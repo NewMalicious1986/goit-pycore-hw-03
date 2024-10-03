@@ -5,26 +5,29 @@ MIN_NUMBER = 1
 
 
 def get_numbers_ticket(
-    min: int = MIN_NUMBER, max: int = MAX_NUMBER, quantity: int = 6
+    min: int = MIN_NUMBER, max: int = MAX_NUMBER, quantity: int = 1
 ) -> list:
     """
-    This module provides a function to generate a ticket with random numbers.
-    Functions:
-        get_numbers_ticket(min: int, max: int, quantity: int) -> list:
-            Generates a ticket with random numbers.
-            Parameters:
-                min (int): The minimum value of the ticket.
-                max (int): The maximum value of the ticket.
-                quantity (int): The quantity of numbers on the ticket.
-            Returns:
-                list: The ticket with random numbers.
-    For more information, see the README at:
-        https://github.com/NewMalicious1986/goit-pycore-hw-03/blob/main/README.md#завдання-2
+    Generate a sorted list of unique random numbers within a specified range.
+
+    Args:
+        min (int): The minimum number in the range (inclusive). Defaults to MIN_NUMBER.
+        max (int): The maximum number in the range (inclusive). Defaults to MAX_NUMBER.
+        quantity (int): The number of unique random numbers to generate. Defaults to 1.
+
+    Returns:
+        list: A sorted list of unique random numbers within the specified range.
+              Returns an empty list if the input parameters are invalid.
     """
 
-    if max > MAX_NUMBER or min < MIN_NUMBER or min > max:
+    numbers_range = range(min, max + 1)
+
+    if max > MAX_NUMBER or min < MIN_NUMBER or min > max or quantity < 1:
         return []
 
-    ticket = random.sample(range(min, max + 1), quantity)
+    ticket = random.sample(numbers_range, quantity)
 
     return sorted(ticket)
+
+
+print(get_numbers_ticket(1, 2, 2))
